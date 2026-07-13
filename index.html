@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<title>Bhargava Phytolab | Sales Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ════ LOGIN ════ -->
+<div id="loginPage" class="login-page">
+  <div class="login-bg"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <img src="logo.jpg" alt="BP">
+      <div>
+        <div class="login-brand">Bhargava Phytolab</div>
+        <div class="login-sub">Sales Command Center</div>
+      </div>
+    </div>
+    <div class="login-fields">
+      <label>EMP Code</label>
+      <input id="empCode" type="text" placeholder="e.g. BP1605" autocomplete="off" autocapitalize="characters">
+      <label style="margin-top:12px">Password</label>
+      <input id="password" type="password" placeholder="Default: your EMP Code">
+      <button class="btn-login" id="loginBtn" onclick="doLogin()">
+        <span id="loginTxt">Login →</span>
+      </button>
+      <p id="loginErr" class="login-err"></p>
+    </div>
+    <p class="login-note">GM · SM · ZSM · RSM · DRSM · ASM · FSO — sabhi yahan login karein</p>
+  </div>
+</div>
+
+<!-- ════ APP SHELL ════ -->
+<div id="app" class="app" style="display:none">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="tb-left">
+      <img src="logo.jpg" class="tb-logo" alt="BP">
+      <div>
+        <div class="tb-name" id="tbName"></div>
+        <div class="tb-meta" id="tbMeta"></div>
+      </div>
+    </div>
+    <div class="tb-right">
+      <div class="tb-kpi"><span>POB</span><b id="tbPob">—</b></div>
+      <div class="tb-kpi"><span>2° Sale</span><b id="tbSec">—</b></div>
+      <div class="tb-kpi deficit"><span>Deficit</span><b id="tbDef">—</b></div>
+      <button class="btn-out" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- FSO VIEW -->
+  <div id="fsoView" class="view" style="display:none">
+    <div class="view-inner">
+      <div class="kpi-row" id="fsoKpis"></div>
+      <div class="card">
+        <div class="card-head">
+          <h2 id="fsoTabTitle">POB Entry</h2>
+          <div class="tab-pills">
+            <button class="pill active" data-t="pob"  onclick="setFsoTab('pob')">POB</button>
+            <button class="pill"        data-t="sec"  onclick="setFsoTab('sec')">Secondary</button>
+            <button class="pill"        data-t="stock" onclick="setFsoTab('stock')">Stock</button>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <table id="fsoTbl">
+            <thead><tr>
+              <th>#</th><th class="tl">Product</th>
+              <th>Target</th><th>Achieved</th>
+              <th>+ Add</th><th>Deficit</th><th>%</th>
+            </tr></thead>
+            <tbody id="fsoBody"></tbody>
+            <tfoot id="fsoFoot"></tfoot>
+          </table>
+        </div>
+        <div class="card-foot">
+          <button class="btn-save" onclick="saveFso()">💾  Save</button>
+          <span id="saveMsg" class="save-msg"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANAGER VIEW -->
+  <div id="mgrView" class="view" style="display:none">
+    <div class="view-inner">
+      <div id="zoneTabs" class="zone-tabs" style="display:none"></div>
+      <div class="kpi-row" id="mgrKpis"></div>
+      <div class="card">
+        <div class="card-head">
+          <h2 id="treeTitle">Team Hierarchy</h2>
+          <div class="tree-ctrl">
+            <input type="text" id="srch" placeholder="Search name / HQ…" oninput="filterTree()">
+            <button class="pill" onclick="expandAll()">Expand All</button>
+            <button class="pill" onclick="collapseAll()">Collapse All</button>
+          </div>
+        </div>
+        <div id="treeBox" class="tree-box"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MODAL ════ -->
+<div id="modal" class="modal-ov" style="display:none" onclick="modalBg(event)">
+  <div class="modal">
+    <div class="modal-hd">
+      <div>
+        <div class="modal-name" id="mName"></div>
+        <div class="modal-sub2" id="mSub"></div>
+      </div>
+      <button class="modal-x" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="mt active" data-tab="sum" onclick="mTab(this,'sum')">Summary</button>
+      <button class="mt" data-tab="prod" onclick="mTab(this,'prod')">Products</button>
+      <button class="mt" data-tab="team" onclick="mTab(this,'team')">Team</button>
+      <button class="mt" data-tab="info" onclick="mTab(this,'info')">Info</button>
+    </div>
+    <div id="mBody" class="modal-body"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
