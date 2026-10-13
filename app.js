@@ -5,7 +5,7 @@
    ▸ REPLACE API_URL BELOW WITH YOUR DEPLOYED WEB APP URL
 ══════════════════════════════════════════════════════ */
 
-const API_URL = "https://script.google.com/macros/s/AKfycbyiGH9qP6URop3x61QMC8V9GXjAE9o3mjKqoym9zMVHoyoE33OPtlbijGCvsE-BmQbPCg/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbysm5Lc48nbVW4QaAjdiUH1pTTeqzQHmZ8uIzRjp2kkjElPcZb1obLpdCxUS0uPzjij/exec";
 
 // ── State ────────────────────────────────────────────
 let G = {
